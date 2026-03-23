@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Personal Expense Tracker</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero card">
+        <div>
+          <p class="eyebrow">Budget smarter</p>
+          <h1>Personal Expense Tracker</h1>
+          <p class="subtitle">
+            Capture daily spending, monitor category totals, and stay on top of your monthly budget.
+          </p>
+        </div>
+        <div class="summary-grid">
+          <article>
+            <p>Total spending</p>
+            <strong id="total-spending">$0.00</strong>
+          </article>
+          <article>
+            <p>Largest category</p>
+            <strong id="top-category">—</strong>
+          </article>
+          <article>
+            <p>Entries logged</p>
+            <strong id="entry-count">0</strong>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-grid">
+        <section class="card form-card">
+          <div class="section-heading">
+            <h2>Add an expense</h2>
+            <p>All calculations update instantly as you log each purchase.</p>
+          </div>
+          <form id="expense-form" class="expense-form">
+            <label>
+              Expense name
+              <input type="text" id="expense-name" name="expenseName" placeholder="Groceries" required />
+            </label>
+
+            <div class="field-row">
+              <label>
+                Amount
+                <input type="number" id="expense-amount" name="amount" min="0.01" step="0.01" placeholder="0.00" required />
+              </label>
+
+              <label>
+                Date
+                <input type="date" id="expense-date" name="date" required />
+              </label>
+            </div>
+
+            <div class="field-row">
+              <label>
+                Category
+                <select id="expense-category" name="category" required>
+                  <option value="">Choose a category</option>
+                  <option>Housing</option>
+                  <option>Food</option>
+                  <option>Transport</option>
+                  <option>Utilities</option>
+                  <option>Health</option>
+                  <option>Entertainment</option>
+                  <option>Shopping</option>
+                  <option>Other</option>
+                </select>
+              </label>
+
+              <label>
+                Payment method
+                <select id="expense-payment" name="paymentMethod" required>
+                  <option value="">Choose a method</option>
+                  <option>Card</option>
+                  <option>Cash</option>
+                  <option>Bank transfer</option>
+                  <option>Digital wallet</option>
+                </select>
+              </label>
+            </div>
+
+            <label>
+              Notes
+              <textarea id="expense-notes" name="notes" rows="3" placeholder="Optional details"></textarea>
+            </label>
+
+            <button type="submit">Save expense</button>
+          </form>
+        </section>
+
+        <section class="card insights-card">
+          <div class="section-heading">
+            <h2>Spending by category</h2>
+            <p>See where your money goes at a glance.</p>
+          </div>
+          <div id="category-breakdown" class="category-breakdown"></div>
+        </section>
+      </section>
+
+      <section class="card ledger-card">
+        <div class="section-heading">
+          <h2>Recent expenses</h2>
+          <p>Your latest purchases appear below with quick-delete support.</p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Date</th>
+                <th>Payment</th>
+                <th>Amount</th>
+                <th aria-label="Actions"></th>
+              </tr>
+            </thead>
+            <tbody id="expense-list"></tbody>
+          </table>
+          <p id="empty-state" class="empty-state">No expenses yet. Add your first expense above.</p>
+        </div>
+      </section>
+    </main>
+
+    <template id="expense-row-template">
+      <tr>
+        <td data-cell="name"></td>
+        <td data-cell="category"></td>
+        <td data-cell="date"></td>
+        <td data-cell="payment"></td>
+        <td data-cell="amount"></td>
+        <td>
+          <button type="button" class="delete-btn">Delete</button>
+        </td>
+      </tr>
+    </template>
+
+    <script src="script.js"></script>
+  </body>
+</html>
